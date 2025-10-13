@@ -1,0 +1,76 @@
+.hero {
+  /* contenedor */
+  position: relative;
+  width: 100%;
+  min-height: 68vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Capa de oscurecimiento encima del fondo para mejorar contraste del texto */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+}
+
+/* Contenido por encima del overlay */
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  padding: 0 1rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--primary-contrast);
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.subtitle {
+  color: var(--parch); /* antes #f1ead4 */
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.cta:hover {
+  transform: translateY(-1px);
+  background: var(--accent-hover);
+}
+
+/* foco accesible */
+.cta:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* un poco de responsive */
+@media (max-width: 420px) {
+  .hero {
+    min-height: 56vh;
+    padding: 3rem 1rem;
+  }
+}

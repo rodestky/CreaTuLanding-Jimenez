@@ -1,0 +1,53 @@
+.footer {
+  background: linear-gradient(180deg, var(--primary), #3f0f0f);
+  color: var(--parch);
+}
+
+/* Marca */
+.brandTitle {
+  font-family: var(--font-heading);
+  color: var(--primary-contrast);
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.brandText {
+  color: var(--parch);
+  margin: 0;
+}
+
+
+.sectionTitle {
+  color: var(--primary-contrast);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.linksList,
+.contactList {
+  color: var(--parch);
+}
+
+/* Enlaces */
+.link {
+  color: var(--parch);
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+.link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e8dcc0;
+  text-align: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
