@@ -1,0 +1,76 @@
+.showMore {
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.showMore:hover {
+  transform: translateY(-1px);
+  background: var(--accent-hover);
+}
+.showMore:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+/* Cuadrícula 2x2 para destacados */
+.gridPreview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Cuadrícula del modal */
+.gridModal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* Cards más pequeñas dentro del modal */
+.cardSmall {
+  background: var(--surface);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+  height: 100%;
+}
+
+/* Botón Ver Menú Completo */
+.showMore {
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.showMore:hover {
+  transform: translateY(-1px);
+  background: var(--accent-hover);
+}
+.showMore:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Ajuste del modal (margen interno superior e inferior) */
+.gridModal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding-top: 2rem;   /* ✅ Espacio arriba */
+  padding-bottom: 2rem; /* ✅ Espacio abajo */
+}
+
+.gridModal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 2rem; /* 2rem en todos los lados */
+}

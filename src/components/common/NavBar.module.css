@@ -1,8 +1,37 @@
-
 .navbar {
   background: linear-gradient(180deg, var(--primary), #5e1717);
   box-shadow: var(--shadow);
+  padding: 0.25rem 1rem;
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-contrast) !important;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.logo {
+  display: inline-block;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  margin-bottom: 2px;
+}
+
+.link {
+  color: var(--primary-contrast) !important;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--white) !important;
+  text-decoration: underline;
+}
+
 
 /* Marca (logo + texto) */
 .brand {

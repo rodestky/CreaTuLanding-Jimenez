@@ -1,11 +1,10 @@
+// src/pages/Home/Home.jsx
 import Hero from "./Hero";
-import Menu from "../Menu/Menu";
 
 function Home() {
   return (
     <>
-      <Hero />        
-      <Menu id="menu" />
+      <Hero />
     </>
   );
 }

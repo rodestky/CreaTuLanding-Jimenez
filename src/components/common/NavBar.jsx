@@ -1,72 +1,128 @@
-import styles from "./NavBar.module.css";
-import CartWidget from "./CartWidget";
-import { alertInfo } from "../../utils/alerts";
-import logo from "../../assets/logo/logo.png";
+// ============================================================
+// 🧙 NavBar.jsx — Barra de navegación principal
+// ------------------------------------------------------------
+// - Muestra el logo y el nombre de la marca "The Wizard’s Table"
+// - Incluye links a Inicio, Categorías (con dropdown), Productos,
+//   Reservas y Contacto.
+// - Contiene el widget del carrito a la derecha.
+// - Usa React Bootstrap + React Router DOM para navegación fluida.
+// ============================================================
 
+import { NavLink, useNavigate } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import CartWidget from "./CartWidget";
+import "../../styles/globals.css";
+import "./NavBar.module.css";
 
 function NavBar() {
-  const handleOpenCart = () =>
-    alertInfo({
-      title: "Tus reservas 🪄",
-      text: "Aún no has agregado ninguna.",
-      confirmButtonText: "Ok",
-    });
+  const navigate = useNavigate();
+
+  // ------------------------------------------------------------
+  // 🔸 Lista de categorías disponibles
+  // - Cada categoría tiene nombre y ruta
+  // - "Todos" redirige a /productos (para mostrar todo el menú)
+  // ------------------------------------------------------------
+  const categorias = [
+    { nombre: "Entradas 🍞", ruta: "entrada" },
+    { nombre: "Platos de Fondo 🍽️", ruta: "plato_fondo" },
+    { nombre: "Veganos 🥗", ruta: "vegano" },
+    { nombre: "Postres 🍰", ruta: "postre" },
+    { nombre: "Bebidas 🍵", ruta: "bebida" },
+    { nombre: "Sopas 🥣", ruta: "sopa" },
+  ];
+
+  // ------------------------------------------------------------
+  // 🔸 Maneja la navegación al seleccionar una categoría
+  // ------------------------------------------------------------
+  const handleSelect = (ruta) => {
+    navigate(`/category/${ruta}`);
+  };
 
   return (
-    <nav
-      className={`navbar navbar-expand-lg fixed-top ${styles.navbar}`}
-      data-bs-theme="dark"
-      aria-label="Barra de navegación"
+    <Navbar
+      expand="lg"
+      className="navbar"
+      fixed="top" // Fijo arriba
+      variant="dark"
     >
-      <div className="container">
-        {/* Marca */}
-        <a className={`navbar-brand ${styles.brand}`} href="/">
-          <img
-            src={logo}
-            alt="The Wizard’s Table"
-            className={styles.logo}
-            width={28}
-            height={28}
-          />
-          The Wizard’s Table
-        </a>
-
-        {/* Toggler móvil */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Abrir menú"
+      <Container>
+        {/* LOGO + NOMBRE */}
+        <Navbar.Brand
+          as={NavLink}
+          to="/"
+          className="brand"
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
         >
-          <span className="navbar-toggler-icon" />
-        </button>
+          {/* Si no se carga el logo local, muestra un ícono mágico como respaldo */}
+          <img
+            src="/logo-shop.png"
+            onError={(e) => {
+              e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/9/99/Star_icon_stylized.svg";
+            }}
+            alt="Logo The Wizard’s Table"
+            className="logo"
+            width="40"
+            height="40"
+          />
+          <span>The Wizard’s Table</span>
+        </Navbar.Brand>
 
-        {/* Links + acciones */}
-        <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className={`nav-link ${styles.link}`} href="/">Inicio</a>
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link ${styles.link}`} href="#menu">Menú</a>
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link ${styles.link}`} href="#reservas">Reservas</a>
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link ${styles.link}`} href="#contacto">Contacto</a>
-            </li>
-          </ul>
+        {/* Botón hamburguesa (para pantallas pequeñas) */}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-          <div className="d-flex align-items-center gap-2">
-            <CartWidget count={0} onClick={handleOpenCart} />
-          </div>
-        </div>
-      </div>
-    </nav>
+        {/* Menú colapsable */}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            {/* Enlace a Inicio */}
+            <Nav.Link as={NavLink} to="/" className="link">
+              Inicio
+            </Nav.Link>
+
+            {/* Dropdown de Categorías */}
+            <NavDropdown title="Categorías" id="nav-dropdown-categorias">
+              {/* Opción "Todos" separada con ícono mágico */}
+              <NavDropdown.Item onClick={() => navigate("/productos")}>
+                🪄 Todos
+              </NavDropdown.Item>
+
+              <NavDropdown.Divider />
+
+              {/* Mapea las categorías */}
+              {categorias.map((cat) => (
+                <NavDropdown.Item
+                  key={cat.ruta}
+                  onClick={() => handleSelect(cat.ruta)}
+                >
+                  {cat.nombre}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+
+            {/* Enlace a Productos */}
+            <Nav.Link as={NavLink} to="/productos" className="link">
+              Productos
+            </Nav.Link>
+
+            {/* Enlace a Reservas */}
+            <Nav.Link as={NavLink} to="/reservas" className="link">
+              Reservas
+            </Nav.Link>
+
+            {/* Enlace a Contacto */}
+            <Nav.Link as={NavLink} to="/contacto" className="link">
+              Contacto
+            </Nav.Link>
+          </Nav>
+
+          {/* Carrito a la derecha */}
+          <CartWidget />
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 

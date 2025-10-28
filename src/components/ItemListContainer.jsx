@@ -1,46 +1,54 @@
-import { alertInfo } from "../utils/alerts";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProductos } from "../mock/AsyncService";
+import ItemList from "./ItemList";
 
-function ItemListContainer({
-  // Mensaje que llega por props
-  message = "Muy pronto verás aquí nuestra carta encantada.",
-}) {
-  // Abre un modal informando que la Carta aún no está disponible
-  const handleShowComingSoon = () => {
-    alertInfo({
-      title: "Carta en preparación 🍽️",
-      text:
-        "Dentro de pronto, aquí verás la carta completa. " +
-        "Estamos terminando los conjuros de carga.",
-      confirmButtonText: "Entendido",
-    });
-  };
+function ItemListContainer({ message }) {
+  const [data, setData] = useState([]); // Estado de productos
+  const { type } = useParams(); // Categoría desde la URL
+
+  useEffect(() => {
+    getProductos()
+      .then((res) => {
+        let result = res;
+
+        // Si hay categoría, filtramos
+        if (type) {
+          result = res.filter((prod) => prod.category === type);
+        } else {
+          // 🔎 Normalizamos el mensaje para evitar errores por mayúsculas/minúsculas
+          const mensajeLower = message.toLowerCase();
+
+          // Si el mensaje es el de la página principal → mostrar 8 productos
+          if (
+            mensajeLower.includes("muy pronto") ||
+            mensajeLower.includes("carta encantada") ||
+            mensajeLower.includes("comingsoon")
+          ) {
+            const categorias = {};
+            const destacados = [];
+
+            for (const prod of res) {
+              if (!categorias[prod.category]) categorias[prod.category] = 0;
+              if (categorias[prod.category] < 2 && destacados.length < 8) {
+                destacados.push(prod);
+                categorias[prod.category]++;
+              }
+            }
+
+            result = destacados;
+          }
+        }
+
+        setData(result);
+      })
+      .catch((err) => console.log("Error al cargar productos", err));
+  }, [type, message]);
 
   return (
-    <section
-      className="container-narrow"
-      style={{ padding: "2rem 0" }}
-      aria-label="Sección Carta (placeholder)"
-    >
-      {/* Texto de estado: proviene del prop `message` */}
-      <p style={{ color: "var(--text-muted)", margin: 0 }}>{message}</p>
-
-      <div style={{ marginTop: "1rem" }}>
-        <button
-          type="button"
-          onClick={handleShowComingSoon}
-          style={{
-            padding: ".6rem 1rem",
-            borderRadius: "var(--radius)",
-            background: "var(--accent)",
-            color: "var(--accent-contrast)",
-            border: "1px solid rgba(0,0,0,.05)",
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          Ver carta (pronto)
-        </button>
-      </div>
+    <section className="container text-center my-5">
+      <h2 className="text-warning mb-4">{message}</h2>
+      <ItemList data={data} />
     </section>
   );
 }

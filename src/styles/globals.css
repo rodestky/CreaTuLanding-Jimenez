@@ -100,3 +100,4 @@ button:focus-visible {
 
 /* Para evitar que el contenido quede oculto detrás del nav fijo */
 section[id] { scroll-margin-top: var(--nav-height); }
+

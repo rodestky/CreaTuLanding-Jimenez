@@ -15,7 +15,7 @@ const SITE = {
     email: "rodstki@gmail.com",
   },
   messages: {
-    comingSoon: "Muy pronto verás aquí nuestra carta encantada.",
+    comingSoon: "Nuestras especialidades mágicas estarán disponibles muy pronto 🪄",
     greeting: "¡Joven mago! Aquí encontrarás muy pronto las delicias que preparamos en el laboratorio ✨"
   },
 };
