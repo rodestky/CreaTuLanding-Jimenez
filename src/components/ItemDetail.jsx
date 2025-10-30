@@ -1,60 +1,56 @@
-// src/components/ItemListContainer.jsx
 // ============================================================
-// ⚙️ Componente contenedor de lógica
-// - Trae los productos desde AsyncService
-// - Filtra por categoría (si la hay en la URL)
-// - En la página principal, muestra solo 8 (2 por categoría aprox.)
+// 🪄 ItemDetail.jsx — Detalle de producto + retrato mágico lateral
+// ------------------------------------------------------------
+// - Card del producto centrada (como estaba).
+// - Imagen del mago y texto aparecen a la izquierda de la pantalla,
+//   flotando con fondo oscuro translúcido.
 // ============================================================
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getProductos } from "../mock/AsyncService";
-import ItemList from "./ItemList";
+import { getRandomWizard } from "../api/hpApi";
+import styles from "./ItemDetail.module.css";
 
-function ItemListContainer({ message }) {
-  const [data, setData] = useState([]); // Estado de productos
-  const { type } = useParams(); // Categoría desde la URL
+function ItemDetail({ item }) {
+  const [wizard, setWizard] = useState(null);
 
   useEffect(() => {
-    getProductos()
-      .then((res) => {
-        let result = res;
-
-        // Si hay categoría en la URL, filtramos
-        if (type) {
-          result = res.filter((prod) => prod.category === type);
-        }
-
-        // Si es la página principal, limitamos a 8 productos
-        // (aproximadamente 2 por categoría)
-        else if (message.includes("Muy pronto") || message.includes("carta encantada") || message.includes("comingSoon")) {
-          const categorias = {};
-          const destacados = [];
-
-          // Recorremos todos los productos
-          for (const prod of res) {
-            // Si no hemos tomado 2 de esta categoría aún, lo agregamos
-            if (!categorias[prod.category]) categorias[prod.category] = 0;
-            if (categorias[prod.category] < 2 && destacados.length < 8) {
-              destacados.push(prod);
-              categorias[prod.category]++;
-            }
-          }
-
-          result = destacados;
-        }
-
-        setData(result);
-      })
-      .catch((err) => console.log("Error al cargar productos", err));
-  }, [type, message]);
+    getRandomWizard().then(setWizard);
+  }, []);
 
   return (
-    <section className="container text-center my-5">
-      <h2 className="text-warning mb-4">{message}</h2>
-      <ItemList data={data} />
-    </section>
+    <div className={styles.wrapper}>
+      {/* 🧁 Card principal centrada */}
+      <article className={styles.card}>
+        <h2 className={styles.title}>{item.name}</h2>
+        <p className={styles.description}>{item.description}</p>
+        <p className={styles.stock}>Stock disponible: {item.stock}</p>
+        <hr />
+        <div className={styles.footer}>
+          <span className={styles.price}>${item.price}</span>
+          <button className={styles.btnAdd}>Agregar al carrito</button>
+        </div>
+      </article>
+
+      {/* ✨ Imagen lateral fija a la izquierda */}
+      {wizard && (
+        <aside className={styles.wizardAside}>
+          <div className={styles.wizardCard}>
+            <img
+              src={wizard.image}
+              alt={wizard.name}
+              className={styles.wizardImg}
+              loading="lazy"
+            />
+            <div className={styles.wizardInfo}>
+              <h4>{wizard.name}</h4>
+              {wizard.house && <p>Casa: {wizard.house}</p>}
+              {wizard.actor && <p>Actor: {wizard.actor}</p>}
+            </div>
+          </div>
+        </aside>
+      )}
+    </div>
   );
 }
 
-export default ItemListContainer;
+export default ItemDetail;

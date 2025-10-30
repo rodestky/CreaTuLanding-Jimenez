@@ -1,76 +1,97 @@
-.showMore {
-  padding: 0.7rem 1.4rem;
-  border-radius: var(--radius);
-  background: var(--accent);
-  color: var(--accent-contrast);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease;
-}
-.showMore:hover {
-  transform: translateY(-1px);
-  background: var(--accent-hover);
-}
-.showMore:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-/* Cuadrícula 2x2 para destacados */
-.gridPreview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+/* ============================================================
+   🎨 ItemDetail.module.css — Estilo visual del detalle con API
+   ============================================================ */
+
+.card {
+  display: flex;
+  align-items: stretch;
+  background: rgba(20, 10, 5, 0.5); /* fondo oscuro translúcido */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
 }
 
-/* Cuadrícula del modal */
-.gridModal {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+/* Imagen a la izquierda */
+.imageContainer {
+  position: relative;
+  width: 45%;
+  overflow: hidden;
 }
 
-/* Cards más pequeñas dentro del modal */
-.cardSmall {
-  background: var(--surface);
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius) !important;
-  box-shadow: var(--shadow);
+.image {
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.1);
 }
 
-/* Botón Ver Menú Completo */
-.showMore {
-  padding: 0.7rem 1.4rem;
-  border-radius: var(--radius);
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.wizardName {
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Información del producto */
+.info {
+  flex: 1;
+  background: rgba(255, 250, 240, 0.9);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.stock {
+  font-size: 0.9rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.price {
+  font-size: 1.8rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.btnAdd {
   background: var(--accent);
   color: var(--accent-contrast);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
   font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease;
-}
-.showMore:hover {
-  transform: translateY(-1px);
-  background: var(--accent-hover);
-}
-.showMore:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* Ajuste del modal (margen interno superior e inferior) */
-.gridModal {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  padding-top: 2rem;   /* ✅ Espacio arriba */
-  padding-bottom: 2rem; /* ✅ Espacio abajo */
-}
-
-.gridModal {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  padding: 2rem; /* 2rem en todos los lados */
+  opacity: 0.8;
+  cursor: not-allowed;
 }

@@ -1,37 +1,49 @@
+// ============================================================
+// 🪄 Hero.jsx — Sección principal de bienvenida
+// ------------------------------------------------------------
+// - Presenta la portada del restaurante mágico.
+// - Incluye un botón "Ver menú" que redirige al catálogo completo (/productos).
+// ============================================================
+
+import { useNavigate } from "react-router-dom";
 import styles from "./Hero.module.css";
 
 function Hero({
   title = "The Wizard’s Table",
   subtitle = "Donde la magia de Hogwarts se encuentra con la alta cocina.",
-  ctaText = "Ver menú",
-  ctaHref = "#menu",
   imageUrl = "/img/hero.jpg",
 }) {
-  // ID  para asociar el subtítulo a la sección vía aria-describedby
-  const subtitleId = "hero-subtitle";
+  // 🧭 Hook para navegar entre rutas sin recargar la página
+  const navigate = useNavigate();
+
+  // 🔹 Redirige al catálogo de productos
+  const handleVerMenu = () => {
+    navigate("/productos");
+  };
 
   return (
     <section
       className={styles.hero}
-      style={{ backgroundImage: `url(${imageUrl})` }} // fondo via inline para permitir override por prop
+      style={{ backgroundImage: `url(${imageUrl})` }}
       aria-label="Portada The Wizard’s Table"
-      aria-describedby={subtitleId}
     >
-      {/* Capa de oscurecimiento */}
+      {/* Capa oscura sobre la imagen para mejorar contraste */}
       <div className={styles.overlay} />
 
-      {/* Contenido en primer plano  */}
+      {/* Contenido principal */}
       <div className={styles.inner}>
         <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{subtitle}</p>
 
-        {/* renderiza el subtítulo del Hero */}
-        <p id={subtitleId} className={styles.subtitle}>
-          {subtitle}
-        </p>
-
-        <a className={styles.cta} href={ctaHref}>
-          {ctaText}
-        </a>
+        {/* Botón funcional: redirige al catálogo */}
+        <button
+          type="button"
+          className={styles.btn}
+          onClick={handleVerMenu}
+          aria-label="Ver menú completo"
+        >
+          🪄 Ver menú
+        </button>
       </div>
     </section>
   );

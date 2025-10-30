@@ -15,7 +15,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "./CartWidget";
 import "../../styles/globals.css";
-import "./NavBar.module.css";
+import "./NavBar.css";
 
 function NavBar() {
   const navigate = useNavigate();
