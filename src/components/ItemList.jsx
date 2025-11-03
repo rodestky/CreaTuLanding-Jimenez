@@ -1,8 +1,7 @@
-// src/components/ItemList.jsx
-// ============================================================
-// 🎨 Presenta una lista de productos
+
+//  Presenta una lista de productos
 // - Recibe "data" (array) y mapea cada producto en <Item />.
-// ============================================================
+
 
 import Item from "./Item";
 

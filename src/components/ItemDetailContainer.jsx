@@ -1,9 +1,8 @@
-// src/components/ItemDetailContainer.jsx
-// ============================================================
-// ⚙️ Componente contenedor para mostrar el detalle de un producto.
+
+// Componente contenedor para mostrar el detalle de un producto.
 // - Usa useParams() para obtener el id.
 // - Busca el producto en el mock y lo pasa a ItemDetail.
-// ============================================================
+
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

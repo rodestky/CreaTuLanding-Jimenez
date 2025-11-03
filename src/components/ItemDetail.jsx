@@ -1,10 +1,8 @@
-// ============================================================
-// 🪄 ItemDetail.jsx — Detalle de producto + retrato mágico lateral
-// ------------------------------------------------------------
-// - Card del producto centrada (como estaba).
-// - Imagen del mago y texto aparecen a la izquierda de la pantalla,
-//   flotando con fondo oscuro translúcido.
-// ============================================================
+
+// - Card del producto centrada.
+// - Imagen del mago y texto aparecen desde la api,
+
+
 
 import { useEffect, useState } from "react";
 import { getRandomWizard } from "../api/hpApi";

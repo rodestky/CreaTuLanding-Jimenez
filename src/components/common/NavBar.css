@@ -33,7 +33,7 @@
 }
 
 
-/* Marca (logo + texto) */
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -58,7 +58,6 @@
   border-radius: var(--radius-sm);
 }
 
-/* Enlaces del nav */
 .link {
   color: var(--primary-contrast) !important;
   letter-spacing: 0.2px;

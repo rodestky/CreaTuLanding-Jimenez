@@ -12,10 +12,9 @@ function CartWidget({ count = 0, onClick = () => {} }) {
       title="Abrir reservas"
       style={{ color: "var(--gold)" }}
     >
-      {/* Ícono del carrito */}
+      {/* carrito */}
       <ShoppingCartOutlined style={{ fontSize: 22 }} />
 
-      {/* Badge solo si hay ítems */}
       {count > 0 && (
         <span
           className="position-absolute top-0 start-100 translate-middle badge rounded-pill"

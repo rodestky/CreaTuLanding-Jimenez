@@ -1,9 +1,7 @@
-// src/components/Item.jsx
-// ============================================================
-// 🎴 Card individual de producto.
+//  Card individual de producto.
 // - Recibe un producto y muestra nombre, descripción, precio.
 // - Usa Link para navegar al detalle del producto.
-// ============================================================
+
 
 import { Link } from "react-router-dom";
 

@@ -1,8 +1,7 @@
 // ============================================================
-// 🪄 hpApi.js — API de personajes de Harry Potter
+//  API de personajes de Harry Potter
 // ------------------------------------------------------------
-// Devuelve un personaje aleatorio con imagen de la API pública.
-// ============================================================
+
 
 export async function getRandomWizard() {
   try {

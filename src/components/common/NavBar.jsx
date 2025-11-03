@@ -1,13 +1,3 @@
-// ============================================================
-// 🧙 NavBar.jsx — Barra de navegación principal
-// ------------------------------------------------------------
-// - Muestra el logo y el nombre de la marca "The Wizard’s Table"
-// - Incluye links a Inicio, Categorías (con dropdown), Productos,
-//   Reservas y Contacto.
-// - Contiene el widget del carrito a la derecha.
-// - Usa React Bootstrap + React Router DOM para navegación fluida.
-// ============================================================
-
 import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -20,11 +10,6 @@ import "./NavBar.css";
 function NavBar() {
   const navigate = useNavigate();
 
-  // ------------------------------------------------------------
-  // 🔸 Lista de categorías disponibles
-  // - Cada categoría tiene nombre y ruta
-  // - "Todos" redirige a /productos (para mostrar todo el menú)
-  // ------------------------------------------------------------
   const categorias = [
     { nombre: "Entradas 🍞", ruta: "entrada" },
     { nombre: "Platos de Fondo 🍽️", ruta: "plato_fondo" },
@@ -34,9 +19,6 @@ function NavBar() {
     { nombre: "Sopas 🥣", ruta: "sopa" },
   ];
 
-  // ------------------------------------------------------------
-  // 🔸 Maneja la navegación al seleccionar una categoría
-  // ------------------------------------------------------------
   const handleSelect = (ruta) => {
     navigate(`/category/${ruta}`);
   };
@@ -49,14 +31,13 @@ function NavBar() {
       variant="dark"
     >
       <Container>
-        {/* LOGO + NOMBRE */}
         <Navbar.Brand
           as={NavLink}
           to="/"
           className="brand"
           style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
         >
-          {/* Si no se carga el logo local, muestra un ícono mágico como respaldo */}
+          {/* Si no se carga el logo local, muestra un ícono como respaldo */}
           <img
             src="/logo-shop.png"
             onError={(e) => {
@@ -102,23 +83,19 @@ function NavBar() {
               ))}
             </NavDropdown>
 
-            {/* Enlace a Productos */}
             <Nav.Link as={NavLink} to="/productos" className="link">
               Productos
             </Nav.Link>
 
-            {/* Enlace a Reservas */}
             <Nav.Link as={NavLink} to="/reservas" className="link">
               Reservas
             </Nav.Link>
 
-            {/* Enlace a Contacto */}
             <Nav.Link as={NavLink} to="/contacto" className="link">
               Contacto
             </Nav.Link>
           </Nav>
 
-          {/* Carrito a la derecha */}
           <CartWidget />
         </Navbar.Collapse>
       </Container>

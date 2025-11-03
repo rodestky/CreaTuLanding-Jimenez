@@ -16,10 +16,10 @@ function ItemListContainer({ message }) {
         if (type) {
           result = res.filter((prod) => prod.category === type);
         } else {
-          // 🔎 Normalizamos el mensaje para evitar errores por mayúsculas/minúsculas
+          //  Normalizamos el mensaje para evitar errores por mayúsculas/minúsculas
           const mensajeLower = message.toLowerCase();
 
-          // Si el mensaje es el de la página principal → mostrar 8 productos
+          // Si el mensaje es el de la página principal → mostrar 8 productos para que se vea con estilo
           if (
             mensajeLower.includes("muy pronto") ||
             mensajeLower.includes("carta encantada") ||

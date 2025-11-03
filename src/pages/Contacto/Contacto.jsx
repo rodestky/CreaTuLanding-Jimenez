@@ -48,7 +48,7 @@ function Contacto() {
               </li>
             </ul>
 
-            {/* Placeholder de mapa (opcional) */}
+            {/* Placeholder de mapa aun no se si ira este creo que no */}
             <div className={styles.mapPlaceholder} aria-hidden="true">
               Mapa próximamente
             </div>

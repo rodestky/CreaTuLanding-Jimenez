@@ -1,9 +1,4 @@
-// ============================================================
-// 🪄 Hero.jsx — Sección principal de bienvenida
-// ------------------------------------------------------------
-// - Presenta la portada del restaurante mágico.
-// - Incluye un botón "Ver menú" que redirige al catálogo completo (/productos).
-// ============================================================
+
 
 import { useNavigate } from "react-router-dom";
 import styles from "./Hero.module.css";
@@ -13,7 +8,7 @@ function Hero({
   subtitle = "Donde la magia de Hogwarts se encuentra con la alta cocina.",
   imageUrl = "/img/hero.jpg",
 }) {
-  // 🧭 Hook para navegar entre rutas sin recargar la página
+  //  Hook para navegar entre rutas sin recargar la página
   const navigate = useNavigate();
 
   // 🔹 Redirige al catálogo de productos
@@ -35,7 +30,7 @@ function Hero({
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>
 
-        {/* Botón funcional: redirige al catálogo */}
+      
         <button
           type="button"
           className={styles.btn}
