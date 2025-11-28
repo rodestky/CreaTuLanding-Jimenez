@@ -1,10 +1,9 @@
 // 📦 Mock asíncrono sin imágenes con 30 productos mágicos.
-// Simula una API devolviendo una lista de productos con categorías.
+
 
 
 export const productos = [
   //  ENTRADAS ------------------------------------------------
-  { id: "01", name: "Sopa del Bosque Prohibido", description: "Hongos silvestres y esencia de roble.", stock: 12, price: 6200, category: "entrada" },
   { id: "02", name: "Pan de Calabaza Encantado", description: "Servido con mantequilla encantada y polvo de luna.", stock: 10, price: 4800, category: "entrada" },
   { id: "03", name: "Empanadas del Callejón Diagon", description: "Rellenas de queso de elfo y hierbas lunares.", stock: 15, price: 5600, category: "entrada" },
   { id: "04", name: "Brochetas de Dragón Bebé", description: "Picantes y mágicamente crujientes.", stock: 8, price: 8900, category: "entrada" },

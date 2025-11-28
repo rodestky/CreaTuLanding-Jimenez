@@ -1,0 +1,52 @@
+import { Routes, Route } from "react-router-dom";
+
+import Home from "../pages/Home/Home";
+import Reservas from "../pages/Reservas/Reservas";
+import Contacto from "../pages/Contacto/Contacto";
+import ItemListContainer from "../components/ItemListContainer";
+import ItemDetailContainer from "../components/ItemDetailContainer";
+import Checkout from "../pages/Checkout";
+import Cart from "../components/Cart/Cart";
+import { SITE } from "../config/siteConfig";
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Home greeting={SITE.messages.greeting} />
+            <ItemListContainer message={SITE.messages.comingSoon} />
+          </>
+        }
+      />
+
+      <Route
+        path="/productos"
+        element={<ItemListContainer message="Catálogo completo de productos mágicos 🪄" />}
+      />
+
+      <Route
+        path="/category/:type"
+        element={<ItemListContainer message="Categoría seleccionada ✨" />}
+      />
+
+      <Route path="/item/:id" element={<ItemDetailContainer />} />
+      <Route path="/cart" element={<Cart />} />
+    
+      <Route path="/reservas" element={<Reservas />} />
+      <Route path="/contacto" element={<Contacto />} />
+       <Route path="/checkout" element={<Checkout />} />
+      {/* 404 */}
+      <Route
+        path="*"
+        element={
+          <h2 className="text-center text-danger mt-5">
+            404 - Página no encontrada 🧭
+          </h2>
+        }
+      />
+    </Routes>
+  );
+}

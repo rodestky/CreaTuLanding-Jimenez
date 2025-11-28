@@ -5,15 +5,45 @@
 
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getRandomWizard } from "../api/hpApi";
 import styles from "./ItemDetail.module.css";
+import { useCart } from "../context/CartContext";
+import ItemCount from "./ItemCount/ItemCount";
+import Swal from 'sweetalert2';
 
 function ItemDetail({ item }) {
   const [wizard, setWizard] = useState(null);
+  const [quantityAdded, setQuantityAdded] = useState(0);
+
+  const { addItem } = useCart();
 
   useEffect(() => {
     getRandomWizard().then(setWizard);
   }, []);
+
+  const handleOnAdd = (quantity) => {
+    if (item.stock === 0) {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Sin stock!',
+        text: 'Este producto no se encuentra disponible.',
+      });
+      return;
+    }
+    if (quantity === 0) {
+      return;
+    }
+    setQuantityAdded(quantity);
+    addItem(item, quantity);
+    Swal.fire({
+      icon: 'success',
+      title: '¡Agregado!',
+      text: `${item.name} fue agregado al carrito.`,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -25,7 +55,11 @@ function ItemDetail({ item }) {
         <hr />
         <div className={styles.footer}>
           <span className={styles.price}>${item.price}</span>
-          <button className={styles.btnAdd}>Agregar al carrito</button>
+          {quantityAdded > 0 ? (
+            <Link to='/cart' className='Option'>Terminar compra</Link>
+          ) : (
+            <ItemCount initial={1} stock={item.stock} onAdd={handleOnAdd} />
+          )}
         </div>
       </article>
 

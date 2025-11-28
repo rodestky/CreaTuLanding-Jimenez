@@ -1,4 +1,4 @@
-// Datos "globales" del sitio para reutilizar en NavBar, Footer, etc.
+
 
 
 const SITE = {
